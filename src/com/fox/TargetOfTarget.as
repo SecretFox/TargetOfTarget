@@ -7,10 +7,13 @@ class com.fox.TargetOfTarget {
 	
 	public static function main(swfRoot:MovieClip):Void {
 		var s_app = new TargetOfTarget(swfRoot);
-		m_Player = Character.GetClientCharacter()
+		swfRoot.onLoad = function(){s_app.Load(); }
 	}
 	public function TargetOfTarget() {
 		Input.RegisterHotkey(_global.Enums.InputCommand.e_InputCommand_AssistOffensive, "com.fox.TargetOfTarget.HotKeyPressed", _global.Enums.Hotkey.eHotkeyDown, 0);
+	}
+	public function Load(){
+		m_Player = Character.GetClientCharacter();
 	}
 	public static function HotKeyPressed() {
 		var EnemyID:ID32 = m_Player.GetOffensiveTarget();
